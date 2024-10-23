@@ -10,12 +10,15 @@
       <ul>
         <li v-for="pokemon in filteredPokemonList" :key="pokemon.name">
           <p tabindex="0">{{ pokemon.name }}</p>
-          <button
-            :class="{ favorite: isFavorite(pokemon) }"
+          <img
+            role="button"
+            :src="isFavorite(pokemon) ? addFavoriteImage : removeFavoriteImage"
+            :alt="
+              isFavorite(pokemon) ? 'Add to favorites' : 'Remove from favorites'
+            "
             @click="toggleFavorite(pokemon)"
-          >
-            Add
-          </button>
+            class="favorite-icon"
+          />
         </li>
       </ul>
 
@@ -34,6 +37,8 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import NavigationButtons from './NavigationButtons.vue'
+import addFavoriteImage from '@/assets/images/fav-active.png'
+import removeFavoriteImage from '@/assets/images/fav-disabled.png'
 
 const pokemonList = ref([])
 const filteredPokemonList = ref([])
@@ -58,7 +63,7 @@ async function fetchPokemon() {
 
 function filterPokemon() {
   filteredPokemonList.value = pokemonList.value.filter(pokemon =>
-    pokemon.name.toLowerCase().includes(searchQuery.value.toLowerCase()),
+    pokemon.name.includes(searchQuery.value),
   )
 }
 
@@ -73,7 +78,9 @@ onMounted(() => {
 })
 </script>
 <style scoped>
-.favorite {
-  background-color: yellow;
+.favorite-icon {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
 }
 </style>

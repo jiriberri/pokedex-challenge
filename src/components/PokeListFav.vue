@@ -3,12 +3,15 @@
     <ul v-if="favoritePokemons.length > 0">
       <li v-for="pokemon in favoritePokemons" :key="pokemon.name">
         <p tabindex="0">{{ pokemon.name }}</p>
-        <button
-          :class="{ favorite: isFavorite(pokemon) }"
+        <img
+          role="button"
+          :src="isFavorite(pokemon) ? addFavoriteImage : removeFavoriteImage"
+          :alt="
+            isFavorite(pokemon) ? 'Add to favorites' : 'Remove from favorites'
+          "
           @click="toggleFavorite(pokemon)"
-        >
-          Add
-        </button>
+          class="favorite-icon"
+        />
       </li>
     </ul>
     <div v-else>
@@ -23,6 +26,8 @@
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 import NavigationButtons from './NavigationButtons.vue'
+import addFavoriteImage from '@/assets/images/fav-active.png'
+import removeFavoriteImage from '@/assets/images/fav-disabled.png'
 
 const store = useStore()
 
@@ -34,8 +39,11 @@ function toggleFavorite(pokemon) {
 
 const isFavorite = pokemon => store.getters.isFavorite(pokemon)
 </script>
+
 <style scoped>
-.favorite {
-  background-color: yellow;
+.favorite-icon {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
 }
 </style>
