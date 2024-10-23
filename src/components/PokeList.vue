@@ -6,14 +6,24 @@
       @keyup.enter="filterPokemon"
       placeholder="Search"
     />
-    <ul v-if="filteredPokemonList.length > 0">
-      <li v-for="pokemon in filteredPokemonList" :key="pokemon.name">
-        <p>{{ pokemon.name }}</p>
-      </li>
-    </ul>
+    <div v-if="filteredPokemonList.length > 0">
+      <ul>
+        <li v-for="pokemon in filteredPokemonList" :key="pokemon.name">
+          <p tabindex="0">{{ pokemon.name }}</p>
+          <button
+            :class="{ favorite: isFavorite(pokemon) }"
+            @click="toggleFavorite(pokemon)"
+          >
+            Add
+          </button>
+        </li>
+      </ul>
+
+      <NavigationButtons />
+    </div>
     <div v-else>
-      <h2>Uh-ok!</h2>
-      <p>You look lost on your journey!</p>
+      <h2 tabindex="0">Uh-ok!</h2>
+      <p tabindex="0">You look lost on your journey!</p>
       <button tabindex="0" @click="goToMainPage">Go Back Home</button>
     </div>
   </div>
@@ -22,11 +32,14 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+import NavigationButtons from './NavigationButtons.vue'
 
 const pokemonList = ref([])
 const filteredPokemonList = ref([])
 const searchQuery = ref('')
 const router = useRouter()
+const store = useStore()
 
 function goToMainPage() {
   router.push('/')
@@ -49,8 +62,18 @@ function filterPokemon() {
   )
 }
 
+function toggleFavorite(pokemon) {
+  store.dispatch('toggleFavoritePokemon', pokemon)
+}
+
+const isFavorite = pokemon => store.getters.isFavorite(pokemon)
+
 onMounted(() => {
   fetchPokemon()
 })
 </script>
-<style scoped></style>
+<style scoped>
+.favorite {
+  background-color: yellow;
+}
+</style>

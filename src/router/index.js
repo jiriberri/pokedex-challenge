@@ -6,7 +6,7 @@ import PokeListFav from '@/components/PokeListFav.vue'
 const routes = [
   { path: '/', component: MainPage },
   { path: '/pokemon-list', component: PokeList },
-  { path: '/pokemon-favorite-list', component: PokeListFav },
+  { path: '/pokemon-list-favorite', component: PokeListFav },
 ]
 
 const router = createRouter({
