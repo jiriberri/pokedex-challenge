@@ -1,12 +1,15 @@
 <template>
-  <div>
-    <button @click="goToPokeList">All</button>
-    <button @click="goToPokeListFav">Favorites</button>
+  <div class="navigation-buttons-container">
+    <button class="navigation-button" @click="goToPokeList">All</button>
+    <button class="navigation-button" @click="goToPokeListFav">
+      Favorites
+    </button>
   </div>
 </template>
 
 <script setup>
 import { useRouter, useRoute } from 'vue-router'
+import '@/assets/styles/NavigationButtons.css'
 
 const router = useRouter()
 const route = useRoute()

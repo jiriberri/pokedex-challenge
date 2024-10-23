@@ -1,23 +1,32 @@
 <template>
-  <div>
+  <div class="pokemon-list-container">
     <input
+      class="search-input"
       type="text"
       v-model="searchQuery"
       @keyup.enter="filterPokemon"
       placeholder="Search"
     />
+    <font-awesome-icon
+      class="search-icon"
+      icon="fa-solid fa-magnifying-glass"
+    />
     <div v-if="filteredPokemonList.length > 0">
       <ul>
-        <li v-for="pokemon in filteredPokemonList" :key="pokemon.name">
-          <p tabindex="0">{{ pokemon.name }}</p>
+        <li
+          class="list-element"
+          v-for="pokemon in filteredPokemonList"
+          :key="pokemon.name"
+        >
+          <p class="title-element" tabindex="0">{{ pokemon.name }}</p>
           <img
+            class="favorite-icon"
             role="button"
             :src="isFavorite(pokemon) ? addFavoriteImage : removeFavoriteImage"
             :alt="
               isFavorite(pokemon) ? 'Add to favorites' : 'Remove from favorites'
             "
             @click="toggleFavorite(pokemon)"
-            class="favorite-icon"
           />
         </li>
       </ul>
@@ -39,6 +48,7 @@ import { useStore } from 'vuex'
 import NavigationButtons from './NavigationButtons.vue'
 import addFavoriteImage from '@/assets/images/fav-active.png'
 import removeFavoriteImage from '@/assets/images/fav-disabled.png'
+import '@/assets/styles/PokeList.css'
 
 const pokemonList = ref([])
 const filteredPokemonList = ref([])
@@ -77,10 +87,3 @@ onMounted(() => {
   fetchPokemon()
 })
 </script>
-<style scoped>
-.favorite-icon {
-  cursor: pointer;
-  width: 24px;
-  height: 24px;
-}
-</style>
