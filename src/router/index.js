@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import MainPage from '@/components/MainPage.vue'
-import PokemonList from '@/components/PokemonList.vue'
-import ListFav from '@/components/ListFav.vue'
+import PokeList from '@/components/PokeList.vue'
+import PokeListFav from '@/components/PokeListFav.vue'
 
 const routes = [
   { path: '/', component: MainPage },
-  { path: '/list', component: PokemonList },
-  { path: '/favlist', component: ListFav },
+  { path: '/pokemon-list', component: PokeList },
+  { path: '/pokemon-favorite-list', component: PokeListFav },
 ]
 
 const router = createRouter({
