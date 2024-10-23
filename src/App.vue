@@ -4,5 +4,7 @@
   </main>
 </template>
 
-<script setup></script>
+<script setup>
+import '@/assets/styles/main.css'
+</script>
 <style scoped></style>
