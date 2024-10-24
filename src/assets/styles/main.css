@@ -26,3 +26,7 @@ body.show-scrollbar *::-webkit-scrollbar-thumb {
 body.show-scrollbar *::-webkit-scrollbar-thumb:hover {
   background-color: #555; /* Darker scrollbar thumb on hover */
 }
+/* Disable scrolling when popup is displayed */
+body.no-scroll {
+  overflow: hidden;
+}
