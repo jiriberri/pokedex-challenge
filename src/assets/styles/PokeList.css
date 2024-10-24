@@ -7,9 +7,10 @@
 div.pokemon-list-container {
   width: 570px;
   margin: auto;
+  padding-bottom: 100px;
 }
 
-input.search-input {
+.pokemon-list-container input.search-input {
   width: 100%;
   height: 50px;
   margin: 35px auto 30px;
@@ -20,14 +21,14 @@ input.search-input {
   background-color: #ffffff;
   box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.04);
 }
-.search-input::placeholder {
+.pokemon-list-container .search-input::placeholder {
   color: #bfbfbf;
 }
-.search-input:focus {
+.pokemon-list-container .search-input:focus {
   outline: none;
 }
 
-.search-icon {
+.pokemon-list-container .search-icon {
   position: absolute;
   top: 52px;
   left: 28%;
@@ -36,7 +37,7 @@ input.search-input {
   background-color: #ffffff;
 }
 
-li.list-element {
+.pokemon-list-container li.list-element {
   height: 60px;
   display: flex;
   justify-content: space-between;
@@ -45,18 +46,62 @@ li.list-element {
   margin: 10px auto;
   background-color: #ffffff;
   border-radius: 5px;
+  cursor: pointer;
 }
 
-li p.title-element {
-  width: 96px;
+.pokemon-list-container li p.title-element {
+  width: 50%;
   font-size: 22px;
   text-transform: capitalize;
   background-color: #ffffff;
 }
 
-li img.favorite-icon {
+.pokemon-list-container li .favorite-icon {
   cursor: pointer;
-  width: 44px;
+  width: 26px;
+  height: 26px;
+  color: #bfbfbf;
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.pokemon-list-container li .favorite-icon-active {
+  color: #eca539;
+}
+
+/* No results page styles */
+.pokemon-list-container .error-message-container {
+  text-align: center;
+}
+
+.pokemon-list-container .error-message-container .error-title {
+  width: 570px;
+  height: 43px;
+  font-size: 36px;
+  font-weight: 700;
+  color: #353535;
+  margin: 50px auto 10px;
+}
+
+.pokemon-list-container .error-message-container .error-description {
+  width: 570px;
+  height: 30px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #5e5e5e;
+  margin: 10px auto 25px;
+}
+
+.pokemon-list-container .error-message-container .go-back-button {
+  width: 155px;
   height: 44px;
-  background-color: #ffffff;
+  background-color: #f22539;
+  border: none;
+  border-radius: 60px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21.6px;
+  color: #ffffff;
+  cursor: pointer;
 }

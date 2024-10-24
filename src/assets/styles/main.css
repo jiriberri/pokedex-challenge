@@ -5,4 +5,24 @@
   background-color: #f9f9f9;
   font-family: 'Lato', sans-serif;
   font-weight: 500;
+  scrollbar-width: thin; /* Firefox */
+  -ms-overflow-style: -ms-autohiding-scrollbar; /* Internet Explorer 10+ */
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+/* Ensure scrollbar is always present but hidden */
+body {
+  overflow-y: scroll; /* Always show vertical scrollbar */
+}
+body.show-scrollbar *::-webkit-scrollbar-thumb {
+  background-color: #888; /* Show scrollbar thumb on hover */
+}
+body.show-scrollbar *::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Darker scrollbar thumb on hover */
 }

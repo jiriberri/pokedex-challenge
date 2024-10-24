@@ -1,16 +1,33 @@
 <template>
-  <div>
-    <ul v-if="favoritePokemons.length > 0">
-      <li v-for="pokemon in favoritePokemons" :key="pokemon.name">
-        <p tabindex="0">{{ pokemon.name }}</p>
-        <img
-          role="button"
-          :src="isFavorite(pokemon) ? addFavoriteImage : removeFavoriteImage"
+  <div class="pokemon-list-container">
+    <input
+      class="search-input"
+      type="text"
+      v-model="searchQuery"
+      @keyup.enter="filterPokemon"
+      placeholder="Search"
+    />
+    <font-awesome-icon
+      class="search-icon"
+      icon="fa-solid fa-magnifying-glass"
+    />
+
+    <ul v-if="filteredFavoritePokemons.length > 0">
+      <li
+        class="list-element"
+        v-for="pokemon in filteredFavoritePokemons"
+        :key="pokemon.name"
+      >
+        <p class="title-element" tabindex="0">{{ pokemon.name }}</p>
+        <font-awesome-icon
+          class="favorite-icon"
+          :class="{ 'favorite-icon-active': isFavorite(pokemon) }"
           :alt="
             isFavorite(pokemon) ? 'Add to favorites' : 'Remove from favorites'
           "
+          :icon="['fas', 'star']"
+          role="button"
           @click="toggleFavorite(pokemon)"
-          class="favorite-icon"
         />
       </li>
     </ul>
@@ -23,27 +40,30 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useStore } from 'vuex'
 import NavigationButtons from './NavigationButtons.vue'
-import addFavoriteImage from '@/assets/images/fav-active.png'
-import removeFavoriteImage from '@/assets/images/fav-disabled.png'
+import '@/assets/styles/PokeList.css'
 
 const store = useStore()
-
+const searchQuery = ref('')
 const favoritePokemons = computed(() => store.getters.favoritePokemons)
+const filteredFavoritePokemons = ref([])
+const isFavorite = pokemon => store.getters.isFavorite(pokemon)
+
+onMounted(() => {
+  filterPokemon()
+  window.scrollTo(0, 0)
+})
+
+function filterPokemon() {
+  filteredFavoritePokemons.value = favoritePokemons.value.filter(pokemon =>
+    pokemon.name.toLowerCase().includes(searchQuery.value.toLowerCase()),
+  )
+}
 
 function toggleFavorite(pokemon) {
   store.dispatch('toggleFavoritePokemon', pokemon)
+  filterPokemon()
 }
-
-const isFavorite = pokemon => store.getters.isFavorite(pokemon)
 </script>
-
-<style scoped>
-.favorite-icon {
-  cursor: pointer;
-  width: 24px;
-  height: 24px;
-}
-</style>

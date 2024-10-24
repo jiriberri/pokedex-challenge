@@ -1,7 +1,10 @@
 <template>
   <div class="navigation-buttons-container">
-    <button class="navigation-button" @click="goToPokeList">All</button>
-    <button class="navigation-button" @click="goToPokeListFav">
+    <button :class="allButtonClass" @click="goToPokeList">
+      <font-awesome-icon class="navbar-icon" :icon="['fas', 'list']" /> All
+    </button>
+    <button :class="favoritesButtonClass" @click="goToPokeListFav">
+      <font-awesome-icon class="navbar-icon" :icon="['fas', 'star']" />
       Favorites
     </button>
   </div>
@@ -9,10 +12,22 @@
 
 <script setup>
 import { useRouter, useRoute } from 'vue-router'
+import { computed } from 'vue'
 import '@/assets/styles/NavigationButtons.css'
 
 const router = useRouter()
 const route = useRoute()
+
+const allButtonClass = computed(() => {
+  return route.fullPath == '/pokemon-list'
+    ? 'navigation-button page-active'
+    : 'navigation-button page-disabled'
+})
+const favoritesButtonClass = computed(() => {
+  return route.fullPath == '/pokemon-list-favorite'
+    ? 'navigation-button page-active'
+    : 'navigation-button page-disabled'
+})
 
 function goToPokeList() {
   if (route.fullPath == '/pokemon-list') {

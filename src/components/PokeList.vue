@@ -19,13 +19,14 @@
           :key="pokemon.name"
         >
           <p class="title-element" tabindex="0">{{ pokemon.name }}</p>
-          <img
+          <font-awesome-icon
             class="favorite-icon"
-            role="button"
-            :src="isFavorite(pokemon) ? addFavoriteImage : removeFavoriteImage"
+            :class="{ 'favorite-icon-active': isFavorite(pokemon) }"
             :alt="
               isFavorite(pokemon) ? 'Add to favorites' : 'Remove from favorites'
             "
+            :icon="['fas', 'star']"
+            role="button"
             @click="toggleFavorite(pokemon)"
           />
         </li>
@@ -33,10 +34,14 @@
 
       <NavigationButtons />
     </div>
-    <div v-else>
-      <h2 tabindex="0">Uh-ok!</h2>
-      <p tabindex="0">You look lost on your journey!</p>
-      <button tabindex="0" @click="goToMainPage">Go Back Home</button>
+    <div class="error-message-container" v-else>
+      <h2 class="error-title" tabindex="0">Uh-ok!</h2>
+      <p class="error-description" tabindex="0">
+        You look lost on your journey!
+      </p>
+      <button class="go-back-button" tabindex="0" @click="goToMainPage">
+        Go Back Home
+      </button>
     </div>
   </div>
 </template>
@@ -46,8 +51,6 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import NavigationButtons from './NavigationButtons.vue'
-import addFavoriteImage from '@/assets/images/fav-active.png'
-import removeFavoriteImage from '@/assets/images/fav-disabled.png'
 import '@/assets/styles/PokeList.css'
 
 const pokemonList = ref([])
