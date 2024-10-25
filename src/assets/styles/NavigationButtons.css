@@ -17,6 +17,7 @@
 .navigation-buttons-container button {
   font-size: 18px;
   font-weight: 700;
+  line-height: 21.6px;
   width: 275px;
   height: 44px;
   border: none;
@@ -44,4 +45,16 @@
   height: 22px;
   background-color: transparent;
   color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .navigation-buttons-container button {
+    width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navigation-buttons-container button {
+    width: 150px;
+  }
 }

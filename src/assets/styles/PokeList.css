@@ -1,4 +1,3 @@
-/* Global styles */
 * {
   text-decoration: none;
   list-style: none;
@@ -29,9 +28,9 @@ div.pokemon-list-container {
 }
 
 .pokemon-list-container .search-icon {
-  position: absolute;
-  top: 52px;
-  left: 28%;
+  position: relative;
+  top: -63px;
+  left: 2%;
   width: 18px;
   color: #bfbfbf;
   background-color: #ffffff;
@@ -52,6 +51,7 @@ div.pokemon-list-container {
 .pokemon-list-container li p.title-element {
   width: 50%;
   font-size: 22px;
+  line-height: 26.4px;
   text-transform: capitalize;
   background-color: #ffffff;
 }
@@ -76,7 +76,7 @@ div.pokemon-list-container {
 }
 
 .pokemon-list-container .error-message-container .error-title {
-  width: 570px;
+  width: 100%;
   height: 43px;
   font-size: 36px;
   font-weight: 700;
@@ -85,7 +85,7 @@ div.pokemon-list-container {
 }
 
 .pokemon-list-container .error-message-container .error-description {
-  width: 570px;
+  width: 100%;
   height: 30px;
   font-size: 20px;
   font-weight: 500;
@@ -104,4 +104,24 @@ div.pokemon-list-container {
   line-height: 21.6px;
   color: #ffffff;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  div.pokemon-list-container {
+    width: 470px;
+  }
+
+  .pokemon-list-container input.search-input {
+    margin-bottom: 10px;
+  }
+
+  .pokemon-list-container .search-icon {
+    top: -43px;
+  }
+}
+
+@media (max-width: 480px) {
+  div.pokemon-list-container {
+    width: 315px;
+  }
 }

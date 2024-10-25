@@ -17,7 +17,9 @@
       <p class="pokemon-info">Height: {{ pokemon.height }}</p>
       <p class="pokemon-info">Types: {{ pokemon.types.join(', ') }}</p>
       <div class="buttons-container">
-        <button class="share-button">Share to my friends</button>
+        <button class="share-button" @click="sharePokemon">
+          Share to my friends
+        </button>
         <font-awesome-icon
           class="favorite-icon"
           :class="{ 'favorite-icon-active': isFavorite }"
@@ -53,5 +55,17 @@ onUnmounted(() => {
 
 function toggleFavorite() {
   store.dispatch('toggleFavoritePokemon', props.pokemon)
+}
+
+function sharePokemon() {
+  const pokemonDetails = `Name: ${props.pokemon.name}, Weight: ${props.pokemon.weight}, Height: ${props.pokemon.height}, Types: ${props.pokemon.types.join(', ')}`
+  navigator.clipboard
+    .writeText(pokemonDetails)
+    .then(() => {
+      alert('Pokémon details copied to clipboard!')
+    })
+    .catch(err => {
+      console.error('Failed to copy text: ', err)
+    })
 }
 </script>

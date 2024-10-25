@@ -13,9 +13,6 @@
 
 .description-container {
   position: fixed;
-  /* top: 50%;
-  left: 50%; */
-  /* transform: translate(-50%, -50%); */
   width: 570px;
   height: 506px;
   background-color: white;
@@ -89,4 +86,42 @@
 }
 .description-container .favorite-icon-active {
   color: #eca539;
+}
+
+@media (max-width: 768px) {
+  .description-container {
+    width: 440px;
+  }
+
+  .description-container .background-image {
+    height: 40%;
+  }
+
+  .description-container .pokemon-info {
+    width: 95%;
+    margin: 10px 20px;
+    padding: 12px 0px;
+  }
+
+  .description-container .buttons-container .share-button {
+    width: 195px;
+    padding: 5px 10px;
+    margin: 10px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .description-container {
+    width: 315px;
+  }
+
+  .description-container .background-image {
+    height: 40%;
+  }
+
+  .description-container .pokemon-info {
+    width: 255px;
+    margin: 5px 15px;
+    padding: 10px 0px;
+  }
 }

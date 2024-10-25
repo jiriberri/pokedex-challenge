@@ -37,6 +37,7 @@
           />
         </li>
       </ul>
+      <NavigationButtons />
     </div>
 
     <div class="error-message-container" v-else>
@@ -49,7 +50,6 @@
       </button>
     </div>
 
-    <NavigationButtons />
     <PokeDescription
       v-if="showPopup"
       :pokemon="selectedPokemon"
