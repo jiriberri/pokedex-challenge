@@ -31,9 +31,11 @@
       </li>
     </ul>
 
-    <div v-else>
-      <h2 tabindex="0">No favorites</h2>
-      <p tabindex="0">You have not added any Pokémon to your favorites list</p>
+    <div class="error-message-container" v-else>
+      <h2 tabindex="0" class="error-title">No favorites</h2>
+      <p tabindex="0" class="error-description">
+        You have not added any Pokémon to your favorites list
+      </p>
     </div>
 
     <NavigationButtons />
@@ -55,7 +57,6 @@ import '@/assets/styles/PokeList.css'
 const store = useStore()
 const searchQuery = ref('')
 const favoritePokemons = computed(() => store.getters.favoritePokemons)
-// const filteredFavoritePokemons = ref([])
 const isFavorite = pokemon => store.getters.isFavorite(pokemon)
 const selectedPokemon = ref(null)
 const showPopup = ref(false)

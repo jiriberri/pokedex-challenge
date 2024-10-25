@@ -74,6 +74,8 @@ const showPopup = ref(false)
 const router = useRouter()
 const store = useStore()
 
+const isFavorite = pokemon => store.getters.isFavorite(pokemon)
+
 onMounted(() => {
   fetchPokemon()
 })
@@ -102,8 +104,6 @@ function filterPokemon() {
 function toggleFavorite(pokemon) {
   store.dispatch('toggleFavoritePokemon', pokemon)
 }
-
-const isFavorite = pokemon => store.getters.isFavorite(pokemon)
 
 async function showDescription(pokemon) {
   try {

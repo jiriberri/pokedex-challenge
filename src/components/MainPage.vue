@@ -27,4 +27,3 @@ function goToPokeList() {
   router.push('pokemon-list')
 }
 </script>
-<style scoped></style>
