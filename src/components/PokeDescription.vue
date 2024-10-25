@@ -6,12 +6,14 @@
         :icon="['fas', 'circle-xmark']"
         @click="$emit('close')"
       />
-      <img
-        class="background-image"
-        src="../assets/images/pokemon-background.png"
-        alt="Background Image"
-      />
-      <!-- <img class="pokemon-image" :src="pokemon.image" alt="Pokemon image" /> -->
+      <div class="image-container">
+        <img
+          class="background-image"
+          src="../assets/images/pokemon-background.png"
+          alt="Background Image"
+        />
+        <img class="pokemon-image" :src="pokemon.image" alt="Pokemon image" />
+      </div>
       <p class="pokemon-info">Name: {{ pokemon.name }}</p>
       <p class="pokemon-info">Weight: {{ pokemon.weight }}</p>
       <p class="pokemon-info">Height: {{ pokemon.height }}</p>

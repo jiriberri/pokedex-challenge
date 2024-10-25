@@ -22,7 +22,7 @@
 
 .description-container .close-button {
   position: absolute;
-  top: 15px;
+  top: 10px;
   right: 10px;
   width: 26px;
   height: 26px;
@@ -30,10 +30,26 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+  z-index: 1001;
 }
 
-.description-container .background-image {
+.description-container .image-container {
+  position: relative;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.description-container .image-container .background-image {
+  width: 100%;
+}
+
+.description-container .image-container .pokemon-image {
+  position: fixed;
+  width: 180px;
+  background-color: transparent;
 }
 
 .description-container .pokemon-info {
@@ -94,7 +110,7 @@
   }
 
   .description-container .background-image {
-    height: 40%;
+    height: 220px;
   }
 
   .description-container .pokemon-info {
@@ -113,10 +129,6 @@
 @media (max-width: 480px) {
   .description-container {
     width: 315px;
-  }
-
-  .description-container .background-image {
-    height: 40%;
   }
 
   .description-container .pokemon-info {

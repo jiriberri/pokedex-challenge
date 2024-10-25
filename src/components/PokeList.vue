@@ -117,7 +117,7 @@ async function showDescription(pokemon) {
       weight: data.weight,
       height: data.height,
       types: data.types.map(typeInfo => typeInfo.type.name),
-      image: data.sprites.other.dream_world.front_default,
+      image: data.sprites.other['official-artwork'].front_default,
     }
     showPopup.value = true
   } catch (error) {
